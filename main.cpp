@@ -1,9 +1,10 @@
-#include <SDL2/SDL.h>
-#include <iostream>
+#include "Game.hpp"
 
-int main(int argv, char **args)
+Game *game = nullptr;
+
+int main(int argv, char **args[])
 {
-    SDL_Init(SDL_INIT_EVERYTHING);
+    game = new Game();
 
     //memoria
     /*
@@ -23,20 +24,19 @@ int main(int argv, char **args)
                           640, 480,
                           SDL_WINDOW_OPENGL);*/
 
-    SDL_Window *window = SDL_CreateWindow("salvee",
-                                          SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-                                          800, 600,
-                                          SDL_WINDOW_OPENGL);
-
-    SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);
-
-    bool isRunning = true;
-    SDL_Event event;
+    game->init("salvee",
+               SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+               800, 600,
+               false);
 
     //loop do jogo
-    while (isRunning)
+    while (game->running())
     {
         //eventos
+        
+        game->handleEvents();
+
+        /*
         while (SDL_PollEvent(&event)) //teclado
         {
 
@@ -52,27 +52,34 @@ int main(int argv, char **args)
                     isRunning = false;
                 }
             }
-        }
+        } */
 
         //renderizacao
-        SDL_RenderClear(renderer);
+        
+        game->update();
+        game->render();
+
+        /*
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 1);
+        SDL_RenderClear(renderer);
 
         SDL_RenderPresent(renderer);
         SDL_GLContext gContext;
-        gContext = SDL_GL_CreateContext(window);
-        
+        gContext = SDL_GL_CreateContext(window); */
+
         //inicia matriz
-        
 
         //fecha matriz
 
         //Animacao
     }
 
+    game->clean();
+
+    /*
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
-    SDL_Quit();
+    SDL_Quit(); */
 
     return 0;
 }
