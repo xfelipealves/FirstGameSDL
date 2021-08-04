@@ -2,6 +2,7 @@
 #define Game_hpp
 
 #include "SDL2/SDL.h"
+#include "SDL2/SDL_image.h"
 #include <iostream>
 
 class Game
@@ -18,13 +19,16 @@ public:
     void render();
     void clean();
 
-    bool running();
+    bool running() { return isRunning; }
 
 private:
-    int cnt;
-    bool isRunning;
+    int cnt = 0;
+    bool isRunning = false;
     SDL_Window *window;
     SDL_Renderer *renderer;
+
+    SDL_Texture *playerTex;
+    SDL_Rect srcR, destR;
 };
 
 #endif /* Game_hpp */

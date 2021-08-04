@@ -2,7 +2,7 @@
 
 Game *game = nullptr;
 
-int main(int argv, char **args[])
+int main(int argc, char *argv[])
 {
     game = new Game();
 
@@ -33,7 +33,7 @@ int main(int argv, char **args[])
     while (game->running())
     {
         //eventos
-        
+
         game->handleEvents();
 
         /*
@@ -55,7 +55,7 @@ int main(int argv, char **args[])
         } */
 
         //renderizacao
-        
+
         game->update();
         game->render();
 
