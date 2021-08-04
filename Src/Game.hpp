@@ -22,13 +22,14 @@ public:
     bool running() { return isRunning; }
 
 private:
-    int cnt = 0;
+    float cnt = 0;
     bool isRunning = false;
     SDL_Window *window;
     SDL_Renderer *renderer;
 
     SDL_Texture *playerTex;
-    SDL_Rect srcR, destR;
+
+    float vel = 0.1;
 };
 
 #endif /* Game_hpp */

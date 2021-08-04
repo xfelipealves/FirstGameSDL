@@ -1,5 +1,7 @@
 #include "Game.hpp"
 
+SDL_Rect srcR, destR;
+
 Game::Game()
 {
 }
@@ -64,11 +66,15 @@ void Game::update()
     //not all the game logic
     //update all the objects in the game
 
-    cnt++;
+    cnt+=vel;
+    
+    if (cnt>=600 || cnt <=-100)
+        vel = -vel;
 
-    destR.h = 64;
-    destR.w = 64;
-    //destR.x = cnt;
+    destR.h = 256;
+    destR.w = 384;
+    destR.x = cnt;
+    
 }
 
 void Game::render()
