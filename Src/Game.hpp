@@ -29,7 +29,7 @@ private:
 
     SDL_Texture *playerTex;
 
-    float vel = 0.1;
+    float vel = 1;
 };
 
 #endif /* Game_hpp */

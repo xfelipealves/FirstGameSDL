@@ -24,6 +24,12 @@ int main(int argc, char *argv[])
                           640, 480,
                           SDL_WINDOW_OPENGL);*/
 
+    const int FPS = 60;
+    const int frameDelay = 1000 / FPS;
+
+    Uint32 frameStart;
+    int frameTime;
+
     game->init("salvee",
                SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
                800, 600,
@@ -33,6 +39,8 @@ int main(int argc, char *argv[])
     while (game->running())
     {
         //eventos
+
+        frameStart = SDL_GetTicks();
 
         game->handleEvents();
 
@@ -59,6 +67,8 @@ int main(int argc, char *argv[])
         game->update();
         game->render();
 
+        frameTime = SDL_GetTicks() - frameStart;
+
         /*
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 1);
         SDL_RenderClear(renderer);
@@ -72,6 +82,12 @@ int main(int argc, char *argv[])
         //fecha matriz
 
         //Animacao
+        
+        if (frameDelay > frameTime)
+        {
+            SDL_Delay(frameDelay - frameTime);
+        }
+
     }
 
     game->clean();
